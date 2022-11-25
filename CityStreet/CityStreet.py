@@ -49,14 +49,19 @@ class CityStreet(torch.utils.data.Dataset):
         img = read_image(img_path)
         hmap = self.__create_heatmap(img, self.labels.iloc[index]["regions"])
 
-        if self.transform and not self.target_transform:
-            img = self.transform(img)
-            hmap = self.transform(hmap)
-        elif self.target_transform and self.transform:
-            hmap = self.target_transform(hmap)
+        if self.transform:
             img = self.transform(img)
 
+        if self.target_transform:
+            hmap = self.target_transform(hmap)
+
         return img, hmap
+
+    def get_original(self, index: int) -> Tuple[torch.Tensor, torch.Tensor]:
+        img_path = os.path.join(self.img_path, self.labels.iloc[index].name)
+        img = read_image(img_path)
+
+        return img, self.labels.iloc[index]["regions"]
 
     def __process_labels(self, path: os.PathLike, roi: np.ndarray) -> pd.DataFrame:
         with open(path, "r") as f:
@@ -91,7 +96,7 @@ class CityStreet(torch.utils.data.Dataset):
         heatmap = torch.zeros(image.shape[1:])
 
         for label in labels:
-            heatmap[label[1]][label[0]] = 1
+            heatmap[label[1]][label[0]] = 1.0
 
         return heatmap.unsqueeze(0)
 
@@ -102,7 +107,7 @@ class CityStreet(torch.utils.data.Dataset):
     def __check_roi(self, x: int, y: int, roi: np.ndarray) -> bool:
         if x not in range(roi.shape[1]) or y not in range(roi.shape[0]):
             return False
-        return roi[y][x] > 0
+        return roi[y][x] ==1
 
 
 if __name__ == "__main__":

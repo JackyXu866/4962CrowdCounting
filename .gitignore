@@ -1,2 +1,8 @@
 # dataset
 /part_A
+
+# Python Cache
+__pycache__
+
+# VSCode
+.vscode
