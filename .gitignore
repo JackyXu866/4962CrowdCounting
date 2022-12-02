@@ -4,5 +4,8 @@
 # Python Cache
 __pycache__
 
+# generated
+*.pyc
+
 # VSCode
 .vscode
