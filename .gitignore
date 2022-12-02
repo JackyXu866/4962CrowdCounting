@@ -1,2 +1,11 @@
 # dataset
 /part_A
+
+# Python Cache
+__pycache__
+
+# generated
+*.pyc
+
+# VSCode
+.vscode
