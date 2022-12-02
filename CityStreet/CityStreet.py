@@ -16,6 +16,7 @@ class CityStreet(torch.utils.data.Dataset):
         train: bool = True,
         view: int = 1,
         skip_empty: bool = True,
+        target_resize_factor: int = 1,
         transform=None,
         target_transform=None
     ) -> None:
@@ -32,6 +33,7 @@ class CityStreet(torch.utils.data.Dataset):
         self.view = view
         self.train = train
         self.skip_empty = skip_empty
+        self.target_resize_factor = target_resize_factor
         self.transform = transform
         self.target_transform = target_transform
 
@@ -46,7 +48,7 @@ class CityStreet(torch.utils.data.Dataset):
 
     def __getitem__(self, index: int) -> Tuple[torch.Tensor, torch.Tensor]:
         img_path = os.path.join(self.img_path, self.labels.iloc[index].name)
-        img = read_image(img_path)
+        img = read_image(img_path) / 255.0
         hmap = self.__create_heatmap(img, self.labels.iloc[index]["regions"])
 
         if self.transform:
@@ -93,10 +95,17 @@ class CityStreet(torch.utils.data.Dataset):
         return labels
 
     def __create_heatmap(self, image: torch.Tensor, labels: List[Tuple[int, int]]) -> torch.Tensor:
-        heatmap = torch.zeros(image.shape[1:])
+        heatmap = torch.zeros(
+            int(image.shape[1] / self.target_resize_factor),
+            int(image.shape[2] / self.target_resize_factor)
+        )
 
         for label in labels:
-            heatmap[label[1]][label[0]] = 1.0
+            label1 = int(label[1] / self.target_resize_factor)
+            label0 = int(label[0] / self.target_resize_factor)
+            if label1 >= heatmap.shape[0] or label0 >= heatmap.shape[1]:
+                continue
+            heatmap[label1][label0] += 1
 
         return heatmap.unsqueeze(0)
 
