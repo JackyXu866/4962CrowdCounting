@@ -1,2 +1,5 @@
 # dataset
 /part_A
+
+# generated
+*.pyc

@@ -4,7 +4,7 @@ from torchvision import transforms
 import os
 import numpy as np
 from scipy.io import loadmat
-from torchvision.io import read_image
+from torchvision.io import read_image, ImageReadMode
 
 
 class PartADataset(Dataset):
@@ -22,7 +22,7 @@ class PartADataset(Dataset):
         img_path = os.path.join(self.img_dir, "IMG_{}.jpg".format(idx+1))
         cord_path = os.path.join(self.cord_dir, "GT_IMG_{}.mat".format(idx+1))
         
-        img = read_image(img_path)
+        img = read_image(img_path, ImageReadMode.RGB).float()/255.
         cord = loadmat(cord_path)['image_info'][0][0][0][0][0]
         cord = self.mark(img, cord)
         
@@ -54,11 +54,11 @@ if __name__ == "__main__":
     
     # Load data
     train_data = PartADataset("./part_A/train_data/images", "./part_A/train_data/ground-truth", transform=transform_d)
-    train_loader = DataLoader(train_data, batch_size=4, shuffle=True)
+    train_loader = DataLoader(train_data, batch_size=4, shuffle=False)
     
     # Test
     for i, data in enumerate(train_loader):
-        print(data[0].shape)
+        print(data[0])
         print(data[1].shape)
         break
     
