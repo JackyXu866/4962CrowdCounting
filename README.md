@@ -5,11 +5,11 @@ CSCI 4962 Projects in Machine Learning & AI
 - [Google Slide](https://docs.google.com/presentation/d/1SNt_8uEQ2Ay64APaiU-T_Yes42mc7AzqIVF3-FzpkH4/edit?usp=sharing)
 
 ## DataSets:
-- Shanghai Tech Crowd Data: [ShanghaiTech](https://www.kaggle.com/datasets/tthien/shanghaitech)
+- [Shanghai Tech Crowd Data](https://www.kaggle.com/datasets/tthien/shanghaitech):
   - Part A: Jacky Xu
   - Part B: YC Shao 
-- JHU Crowd++: [JHU](http://www.crowd-counting.com/): Zach F.
-- City Street: [CityStreet](http://visal.cs.cityu.edu.hk/research/citystreet/): Jerry Lu
+- [JHU Crowd++](http://www.crowd-counting.com/): Zach F.
+- [City Street](http://visal.cs.cityu.edu.hk/research/citystreet/): Jerry Lu
 
 ## Models:
 - Custom Encoder & Decoder: Jacky Xu
