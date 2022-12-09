@@ -16,7 +16,7 @@ class CityStreet(torch.utils.data.Dataset):
         train: bool = True,
         view: int = 1,
         skip_empty: bool = True,
-        target_resize_factor: int = 1,
+        target_resize_factor: float = 1.0,
         transform=None,
         target_transform=None
     ) -> None:
