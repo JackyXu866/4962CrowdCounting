@@ -5,15 +5,17 @@ CSCI 4962 Projects in Machine Learning & AI
 - [Google Slide](https://docs.google.com/presentation/d/1SNt_8uEQ2Ay64APaiU-T_Yes42mc7AzqIVF3-FzpkH4/edit?usp=sharing)
 
 ## DataSets:
-- Shanghai Tech Crowd Data: [ShanghaiTech](https://www.kaggle.com/datasets/tthien/shanghaitech)
-- JHU Crowd++: [JHU](http://www.crowd-counting.com/)
-- City Street: [CityStreet](http://visal.cs.cityu.edu.hk/research/citystreet/)
+- [Shanghai Tech Crowd Data](https://www.kaggle.com/datasets/tthien/shanghaitech):
+  - Part A: Jacky Xu
+  - Part B: YC Shao 
+- [JHU Crowd++](http://www.crowd-counting.com/): Zach F.
+- [City Street](http://visal.cs.cityu.edu.hk/research/citystreet/): Jerry Lu
 
 ## Models:
-- Custom Encoder & Decoder
-- [MCNN](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Zhang_Single-Image_Crowd_Counting_CVPR_2016_paper.pdf)
-- [CG-DRCN](http://www.crowd-counting.com/assets/img/jhucrowdv1_iccv19.pdf)
-- [ic-CNN](https://arxiv.org/abs/1807.09959)
+- Custom Encoder & Decoder: Jacky Xu
+- [MCNN](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Zhang_Single-Image_Crowd_Counting_CVPR_2016_paper.pdf): Jerry Lu
+- [CG-DRCN](http://www.crowd-counting.com/assets/img/jhucrowdv1_iccv19.pdf): Zach F.
+- [ic-CNN](https://arxiv.org/abs/1807.09959): YC Shao
 
 ## Group Notes:
 - [Project Proposal](https://docs.google.com/document/d/1Pmqh2bMFHnq9pJ7FMtc9t6LpOXq5ENqaQQWXjcr-hyY/edit?usp=sharing)
