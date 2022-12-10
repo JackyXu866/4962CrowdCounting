@@ -11,6 +11,7 @@ CSCI 4962 Projects in Machine Learning & AI
 ## Analyze
 - City Street with MCNN - [link](CityStreet/README.md)
 - Shanghai Tech with ic-CNN - [link](ShanghaiTechPartB/README.md)
+- Also see comments in our codes
 
 ## Other thoughts
 
