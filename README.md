@@ -29,6 +29,8 @@ We built the baseline model and designed the corresponding loss function based o
 The summaries of the models and the corresponding training datasets are listed below
 - City Street with MCNN - [link](CityStreet/README.md)
 - Shanghai Tech with ic-CNN - [link](ShanghaiTechPartB/README.md)
+- Shanghai Tech with baseline - [link](ShanghaiTechPartA/README.md)
+- JHU Crowd++ with CG-DRCN - [link](jhu_crowd/README.md)
 - Also see comments in our codes
 
 | Model                     | Year |     Params | Params size | MAE,MSE on UCF |
@@ -41,6 +43,8 @@ The summaries of the models and the corresponding training datasets are listed b
 We can see that newer models are built on the shoulder of older models, and are trying to solve some problems exposed by the older models. MCNN uses three different window sizes for detecting various head sizes, which gives desirable performance when the head size falls within the range of the three window sizes. However, MCNN performs poorly when the head size is not expected. (consider the extreme case that the crowd is very close to the camera) ic-CNN takes a different approach and tries to create a more general model. It first generates a LR heatmap which provides the spatial and density information of the crowd, and utilizes the LR heatmap to guide the generation of the HR heatmap, which fine grinds the information missed by the LR heatmap, and gives a more accurate estimation with higher resolution. However, it seems that design of the HR heatmap data stream (`hrCNN1`, `hrCNN2`) is problematic since the LR data streams and the HR data streams provide the same level of abstraction, and some concrete features (low-level features) are ignored by the model. CG-DGCN tackles this issue by using VGG16 as the backbone and extracting features at different levels to create the heatmap, which uses all the information in the image effectively. The model also redesigns the loss function and introduces residual learning to guide the model to the optimal state.
 
 We can also see the trend of the increasing model complex. CG-DGCN has 300 times more parameters than MCNN. The boosted complex not only causes a longer training time but also brings problems such as small gradients and vanishing gradients. In our experiments, MCNN converges in 100 epochs and gives a good result, meanwhile ic-CNN gives a meaningful LR heatmap and an unstable HR heatmap after 100 epochs.
+
+Overall, CG-DGCN is the best model of all the models we tested. It provides great accuracy on all the datasets and generalizes well. However, with over 30 million parameters, CG-DGCN requires great computational power, and may not be suitable for edge computing (for example, integrated AI counting in surveillance cameras). For some specific tasks with expectable head sizes (such as surveillance cameras installed at the top of the building. So all heads have similar sizes), small-tuned MCNN could be a better choice since it reduces the requirement on hardware and provides faster inference speed with decent accuracy.
 
 
 ## Other thoughts
